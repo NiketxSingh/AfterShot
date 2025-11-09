@@ -44,5 +44,4 @@ To advance, **defeat the required number of enemies** in each level and survive 
 1. Clone the repository
 2. Open folder Game
 3. Open AfterShot
-   git clone https://github.com/<your-username>/AfterShot.git
 
