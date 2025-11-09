@@ -46,6 +46,7 @@ public class BulletBehaviour : MonoBehaviour
             rb_bullet.bodyType = RigidbodyType2D.Static;
             gameObject.tag = "Spike";
             gameObject.layer = 8;
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 90);
 
         }
     }

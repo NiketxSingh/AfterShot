@@ -9,6 +9,7 @@ TagManager:
   - Wall
   - Spike
   - Shield
+  - SceneController
   layers:
   - Default
   - TransparentFX

@@ -26,15 +26,14 @@ public class EnemyFlying : MonoBehaviour {
     void Update() {
         float y = Mathf.Sin((Time.time + sineOffset) * floatFrequency) * floatAmplitude;
         transform.position += new Vector3(direction * enemySpeed * Time.deltaTime, y * Time.deltaTime, 0);
+        if (direction != 0) {
+            transform.localScale = new Vector3(direction, 1, 1);
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.collider.CompareTag("Player")) {
-            Time.timeScale = 0f;
-            Debug.Log("Game Over");
-        }
 
-        if (collision.collider.CompareTag("Wall")) {
+        if (collision.collider.CompareTag("Wall") || collision.collider.CompareTag("Ground")) {
             direction *= -1;
         }
     }

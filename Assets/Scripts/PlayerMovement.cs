@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour {
         float input_x = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(previous_input_x * speed, rb.velocity.y);
         if (input_x != 0) {
-            transform.localScale = new Vector3(Mathf.Sign(input_x), transform.localScale.y, transform.localScale.z);
+            transform.localScale = new Vector3(Mathf.Sign(input_x) * 0.6f, transform.localScale.y, transform.localScale.z);
             previous_input_x = input_x;
         }
     }

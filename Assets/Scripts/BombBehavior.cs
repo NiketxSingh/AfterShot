@@ -8,8 +8,13 @@ public class BombBehaviour : MonoBehaviour
 {
     // Start is called before the first frame update
     public float radius = 5f;
+    private GameObject player;
+
+    private Shooting shooting;
     void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
+        shooting = player.GetComponent<Shooting>();
     }
 
     // Update is called once per frame
@@ -23,6 +28,8 @@ public class BombBehaviour : MonoBehaviour
                 if (hits[i].gameObject.CompareTag("Enemy"))
                 {
                     Destroy(hits[i].gameObject);
+                    shooting.enemyKilled += 1;
+                    
                 }
             }
             Destroy(gameObject);

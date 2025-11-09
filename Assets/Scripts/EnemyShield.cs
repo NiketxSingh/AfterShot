@@ -10,23 +10,24 @@ public class EnemyShield : MonoBehaviour {
     private Rigidbody2D rb_enemy;
     private float enemyJumpSpeed = 5f;
 
+    private float direction;
+
     void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         rb_enemy = GetComponent<Rigidbody2D>();
     }
 
-    void FixedUpdate() {
+    void Update() {
         playerPosition = player.transform.position;
         transform.position += new Vector3(playerPosition.x - transform.position.x, 0, 0).normalized * enemySpeed * Time.deltaTime;
-
+        direction = Mathf.Sign((playerPosition - transform.position).x);
+        if (direction != 0) {
+            transform.localScale = new Vector3(direction, 1, 1);
+        }
     }
 
 
     private void OnCollisionEnter2D(Collision2D collision) {
-        if (collision.collider.CompareTag("Player")) {
-            Time.timeScale = 0f;
-            Debug.Log("Game Over");
-        }
 
         if (collision.gameObject.CompareTag("Spike")) {
             Jump();

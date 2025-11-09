@@ -7,6 +7,7 @@ public class EnemyBasic : MonoBehaviour
 {
     private GameObject player;
     private Vector3 playerPosition;
+    private float direction;
     [SerializeField] private float enemySpeed = 2f;
 
     void Start()
@@ -14,19 +15,13 @@ public class EnemyBasic : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void FixedUpdate() {
+    void Update() {
         playerPosition = player.transform.position;
         transform.position += new Vector3(playerPosition.x - transform.position.x, 0, 0).normalized * enemySpeed * Time.deltaTime;
-
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.CompareTag("Player"))
-        {
-            Time.timeScale = 0f;
-            Debug.Log("Game Over");
+        direction = Mathf.Sign((playerPosition - transform.position).x);
+        if (direction != 0) {
+            transform.localScale = new Vector3(direction,1,1);
         }
     }
+
 }
